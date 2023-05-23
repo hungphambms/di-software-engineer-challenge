@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+## How to Install
+`npm install`
+`Recommend: node 16`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to start
+`npm run crawl <url>`
 
-## Available Scripts
+<strong>Example:</strong>
+`npm run crawl https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression`
 
-In the project directory, you can run:
 
-### `npm start`
+## Unit Test
+`npm run test`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Approach and solve
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![alt Coding Flow](public/assets/NodeJS-Diagram.jpeg)
 
-### `npm test`
+#### My approach to solving this problem is to use the libraries:
+- Axios: to fetch html of the page
+- Cheerios: to convert html to dom and support querying DOM elements
+- Chart.js: to build charts and store them as images
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### The problem to be solved:
 
-### `npm run build`
+- Identify Table in html: take the first table in html
+- Identify numeric column in table: use isNaN function to check - if there is no numeric column, it will notify
+- Drawing a chart usually requires two parameters: Labels and Datasets. So I will use the numeric column as datasets and the first text column as labels.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Processing procedure:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- <b>Step 1</b>: Get url from command line and use axios to fetch html.
+`If HTML cannot be fetched. It will not report invalid url and end the program.`
+- <b>Step 2</b>: use cheerio to parse html into DOM Object.
+- <b>Step 3</b>: Take the first table and parse the table data into Data Array. In this step, you need to identify the numeric column
+`If you cannot identify the necessary data. It will not report invalid url and end the program.`
+- <b>Step 4</b>: Use Chart.JS to draw chart and store it in Public Folder
+- <b>Step 5</b>: Notify Image Path to user and end program.
